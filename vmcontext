@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+# This script will mount and fetch required environment variables
+
+function export_rc_vars
+{
+    if [ -f $1 ] ; then
+        ONE_VARS=`cat $1 | egrep -e '^[a-zA-Z\-\_0-9]*=' | sed 's/=.*$//'`
+
+        . $1
+
+        for v in $ONE_VARS; do
+            export $v
+        done
+    fi
+}
+
+case "$1" in
+"start")
+    if [ -e "/dev/disk/by-label/CONTEXT" ]; then
+        mount -t iso9660 -L CONTEXT -o ro /mnt
+        if [ -f /mnt/context.sh ]; then
+            export_rc_vars /mnt/context.sh
+        fi
+
+        umount /mnt
+
+    fi
+    ;;
+
+esac
+
