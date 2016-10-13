@@ -1,3 +1,4 @@
 #!/bin/bash
 
-echo $APP > /root/foo.txt
+/root/scripts/vmcontext start
+/root/scripts/$APP.sh
