@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 APP=`grep APP /tmp/env | cut -d'=' -f2`
 
