@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Called for env variables
-/root/scripts/vmcontext
+APP=`grep APP /tmp/env | cut -d'=' -f2`
 
 touch /root/1.txt
 ansible-galaxy install -r /root/scripts/$APP/$APP_requirements.yml

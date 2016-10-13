@@ -23,6 +23,8 @@ case "$1" in
             export_rc_vars /mnt/context.sh
         fi
 
+		env > /tmp/env
+
         umount /mnt
 
     fi
