@@ -1,0 +1,4 @@
+- name: Varnish Frontend
+  hosts: localhost
+  roles:
+    - { role: VARNISH_STANDALONE }

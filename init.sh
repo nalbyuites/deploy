@@ -1,4 +1,4 @@
 #!/bin/bash
 
 /root/scripts/vmcontext start
-/root/scripts/$APP.sh
+/root/scripts/$APP/$APP.sh

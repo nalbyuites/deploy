@@ -1,0 +1,3 @@
+- src: git+https://github.com/nalbyuites/ansible-role-varnish.git
+  version: master
+  name: VARNISH_STANDALONE
