@@ -18,9 +18,9 @@ echo "$VARNISH_DEFAULT_BACKEND_HOST $VARNISH_DEFAULT_BACKEND_DOMAINS" >> /etc/ho
 sed -i "/varnish_listen_port/d" /etc/ansible/roles/$APP/defaults/main.yml
 sed -i "/varnish_default_backend_host/d" /etc/ansible/roles/$APP/defaults/main.yml
 sed -i "/varnish_default_backend_port/d" /etc/ansible/roles/$APP/defaults/main.yml
-echo "varnish_listen_port: '$VARNISH_LISTEN_PORT'"
-echo "varnish_default_backend_host: '$VARNISH_DEFAULT_BACKEND_HOST'"
-echo "varnish_default_backend_port: '$VARNISH_DEFAULT_BACKEND_PORT'"
+echo "varnish_listen_port: '$VARNISH_LISTEN_PORT'" >> /etc/ansible/roles/$APP/defaults/main.yml
+echo "varnish_default_backend_host: '$VARNISH_DEFAULT_BACKEND_HOST'" >> /etc/ansible/roles/$APP/defaults/main.yml
+echo "varnish_default_backend_port: '$VARNISH_DEFAULT_BACKEND_PORT'" >> /etc/ansible/roles/$APP/defaults/main.yml
 
 # Install and configure varnish
 ansible-playbook /root/scripts/$APP/"$APP"_playbook.yml
