@@ -26,4 +26,4 @@ echo "varnish_default_backend_port: '$VARNISH_DEFAULT_BACKEND_PORT'"
 ansible-playbook /root/scripts/$APP/"$APP"_playbook.yml
 
 # Clean up
-ansible-galaxy remove $APP
+#ansible-galaxy remove $APP
