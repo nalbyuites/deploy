@@ -13,6 +13,7 @@ export ANSIBLE_REMOTE_TMP=$HOME/.ansible/tmp
 ansible-galaxy install -r /root/scripts/$APP/"$APP"_requirements.yml
 
 # Set the hosts file entry for domains served by the default backend
+sed -i "/example/d" /etc/hosts
 echo "$VARNISH_DEFAULT_BACKEND_HOST $VARNISH_DEFAULT_BACKEND_DOMAINS" >> /etc/hosts
 # Set the defaults in playbook
 sed -i "/varnish_listen_port/d" /etc/ansible/roles/$APP/defaults/main.yml
