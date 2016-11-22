@@ -24,13 +24,12 @@ echo "varnish_default_backend_host: '$VARNISH_DEFAULT_BACKEND_HOST'" >> /etc/ans
 echo "varnish_default_backend_port: '$VARNISH_DEFAULT_BACKEND_PORT'" >> /etc/ansible/roles/$APP/defaults/main.yml
 
 # Install varnish the first time and only configure varnish thereafter.
-if [ `netstat -tlnp | grep -c varnish` -gt 0 ]; then
+if [ `netstat -tlnp | grep -c "127.0.0.1:6082"` -gt 0 ]; then
     ansible-playbook /root/scripts/$APP/"$APP"_playbook.yml --tags "varnish-configure,varnish-service"
     # Notify folks
     /root/scripts/$APP/inform.sh 2>/dev/null
+    # Clean up
+    ansible-galaxy remove $APP
 else
     ansible-playbook /root/scripts/$APP/"$APP"_playbook.yml
 fi
-
-# Clean up
-ansible-galaxy remove $APP
