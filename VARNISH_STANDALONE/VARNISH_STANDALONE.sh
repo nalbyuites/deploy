@@ -31,6 +31,8 @@ if [ `netstat -tlnp | grep -c "127.0.0.1:6082"` -gt 0 ]; then
     if ping -W1 -c1 8.8.8.8 >/dev/null; then
         # Notify folks
         /root/scripts/$APP/inform.sh 2>/dev/null
+	else
+        touch /usr/local/share/no-notification-email-sent
     fi
 
     # Clean up
