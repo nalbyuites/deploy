@@ -25,11 +25,19 @@ echo "varnish_default_backend_port: '$VARNISH_DEFAULT_BACKEND_PORT'" >> /etc/ans
 
 # Install varnish the first time and only configure varnish thereafter.
 if [ `netstat -tlnp | grep -c "127.0.0.1:6082"` -gt 0 ]; then
+
     ansible-playbook /root/scripts/$APP/"$APP"_playbook.yml --tags "varnish-configure,varnish-service"
-    # Notify folks
-    /root/scripts/$APP/inform.sh 2>/dev/null
+
+    if ping -W1 -c1 8.8.8.8 >/dev/null; then
+        # Notify folks
+        /root/scripts/$APP/inform.sh 2>/dev/null
+    fi
+
     # Clean up
     ansible-galaxy remove $APP
+
 else
+
     ansible-playbook /root/scripts/$APP/"$APP"_playbook.yml
+
 fi
