@@ -26,7 +26,12 @@ echo "varnish_default_backend_port: '$VARNISH_DEFAULT_BACKEND_PORT'" >> /etc/ans
 # Install varnish the first time and only configure varnish thereafter.
 if [ `netstat -tlnp | grep -c varnish` -gt 0 ]; then
     ansible-playbook /root/scripts/$APP/"$APP"_playbook.yml --tags "varnish-configure,varnish-service"
-	ansible-galaxy remove $APP
 else
     ansible-playbook /root/scripts/$APP/"$APP"_playbook.yml
 fi
+
+# Notify folks
+/root/scripts/$APP/inform.sh 2>/dev/null
+
+# Clean up
+ansible-galaxy remove $APP
