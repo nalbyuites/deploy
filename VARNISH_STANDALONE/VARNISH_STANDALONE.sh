@@ -28,10 +28,10 @@ if [ `netstat -tlnp | grep -c varnish` -gt 0 ]; then
     ansible-playbook /root/scripts/$APP/"$APP"_playbook.yml --tags "varnish-configure,varnish-service"
 else
     ansible-playbook /root/scripts/$APP/"$APP"_playbook.yml
+	# Notify folks
+	/root/scripts/$APP/inform.sh 2>/dev/null
 fi
 
-# Notify folks
-/root/scripts/$APP/inform.sh 2>/dev/null
 
 # Clean up
 ansible-galaxy remove $APP
